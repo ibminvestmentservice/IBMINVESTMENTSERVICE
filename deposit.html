@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E0F7FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #fff;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            text-align: right;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .recharge-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .recharge-button:hover {
+            background-color: #45a049;
+        }
+
+        .tips {
+            font-size: 14px;
+            color: #555;
+            text-align: left;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="goBack()">&#8592;</button>
+
+    <div class="container">
+        <h1>Recharge</h1>
+
+        <!-- Number Input Field -->
+        <input type="number" id="rechargeAmount" placeholder="₹0.00" min="0">
+
+        <!-- Recharge Button -->
+        <button class="recharge-button" onclick="redirect()">Recharge</button>
+
+        <!-- Recharge Tips -->
+        <div class="tips">
+            <strong>Recharge Tips:</strong>
+            <ol>
+                <li>As our deposit page is facing problem, you have write the amount in the UPI app also.</li>
+                <li>If you input wrong amount in the UPI app, your amount will not added in your balance.</li>
+                <li>We will take immediate action for this and we are regreted for this.</li>
+                <li>Each time you recharge, you need to obtain a new payment account.</li>
+                <li>Please do not save the account balance.</li>
+                <li>Confirm the correct recharge amount and enter the normal UTR number. Do not transfer money to strangers.</li>
+                <li>Recharge must be collected after applying for recharge. If you encounter any problems, please contact the official online customer service.</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        // Function to redirect to another site when "Recharge" is clicked
+        function redirect() {
+            let amount = document.getElementById('rechargeAmount').value;
+            
+            // Check if the amount is less than 600
+            if (amount < 600) {
+                alert("The minimum deposit amount: ₹600");
+            } else {
+                window.location.href = 'https://getupilink.com/upi/ankitkoley21@oksbi'; // Replace with your desired URL
+            }
+        }
+
+        // Function to go back
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>

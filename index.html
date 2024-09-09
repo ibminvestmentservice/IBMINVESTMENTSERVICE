@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Register Interface</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #E0F7FA;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        .container img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .tab button {
+            background-color: #f1f1f1;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            width: 48%;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .tab button.active {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+
+        .form-section {
+            display: none;
+        }
+
+        .form-section.active {
+            display: block;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            transition: border 0.3s ease;
+            font-size: 16px;
+        }
+
+        input[type="text"]:focus, input[type="password"]:focus {
+            border: 1px solid #4CAF50;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #388E3C;
+        }
+
+        form label {
+            font-size: 14px;
+            font-weight: bold;
+            text-align: left;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Circular Image -->
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSImBfDxmJiqjy0_ZVPNrFXct6mK3sOaZn0IQ&usqp=CAU" alt="Profile Picture">
+
+    <div class="tab">
+        <button class="tablink active" onclick="openSection('login')">Login</button>
+        <button class="tablink" onclick="openSection('register')">Register</button>
+    </div>
+
+    <!-- Login Section -->
+    <div id="login" class="form-section active">
+        <form id="loginForm" action="dashboard.html" method="POST" onsubmit="return validateLogin()">
+            <label for="phone">Phone number:</label>
+            <input type="text" id="loginPhone" name="phone" placeholder="Enter phone number" required>
+
+            <label for="password">Login password:</label>
+            <input type="password" id="loginPassword" name="password" placeholder="Enter password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <!-- Register Section -->
+    <div id="register" class="form-section">
+        <form id="registerForm" action="javascript:void(0);" onsubmit="return registerUser()">
+            <label for="phone">Mobile:</label>
+            <input type="text" id="registerPhone" name="phone" placeholder="Enter mobile number" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="registerPassword" name="password" placeholder="Create a password" required>
+
+            <label for="withdrawPassword">Withdrawal password:</label>
+            <input type="password" id="withdrawPassword" name="withdrawPassword" placeholder="Create a withdrawal password" required>
+
+            <label for="inviteCode">Invite Code:</label>
+            <input type="text" id="inviteCode" name="inviteCode" placeholder="Optional">
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+
+<script>
+   // Simulated database of registered users, retrieved from localStorage
+var registeredUsers = JSON.parse(localStorage.getItem("registeredUsers")) || [];
+
+function openSection(sectionName) {
+    var i;
+    var x = document.getElementsByClassName("form-section");
+    var tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < x.length; i++) {
+        x[i].classList.remove("active");
+    }
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    document.getElementById(sectionName).classList.add("active");
+    event.currentTarget.classList.add("active");
+}
+
+function validateLogin() {
+    var phone = document.getElementById("loginPhone").value;
+    var password = document.getElementById("loginPassword").value;
+
+    // Check if the phone number is registered
+    for (var i = 0; i < registeredUsers.length; i++) {
+        if (registeredUsers[i].phone === phone && registeredUsers[i].password === password) {
+            return true; // Allow form submission
+        }
+    }
+
+    alert("Invalid phone number or password. Please try again.");
+    return false; // Prevent form submission
+}
+
+function registerUser() {
+    var phone = document.getElementById("registerPhone").value;
+    var password = document.getElementById("registerPassword").value;
+    var withdrawPassword = document.getElementById("withdrawPassword").value;
+    var inviteCode = document.getElementById("inviteCode").value;
+
+    // Check if the phone number is already registered
+    for (var i = 0; i < registeredUsers.length; i++) {
+        if (registeredUsers[i].phone === phone) {
+            alert("This phone number is already registered. Please use a different number.");
+            return false; // Prevent form submission
+        }
+    }
+
+    // Save the registration details
+    var newUser = {
+        phone: phone,
+        password: password,
+        withdrawPassword: withdrawPassword,
+        inviteCode: inviteCode
+    };
+
+    registeredUsers.push(newUser);
+
+    // Store updated registered users in localStorage
+    localStorage.setItem("registeredUsers", JSON.stringify(registeredUsers));
+
+    alert("Registration successful!");
+    console.log("Registered Users:", registeredUsers);
+
+    return true; // Allow form submission
+}
+</script>
+
+</body>
+</html>

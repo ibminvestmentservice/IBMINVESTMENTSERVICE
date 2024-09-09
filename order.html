@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f0f5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .back-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .title {
+            font-size: 20px;
+        }
+        .order-list {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .tabs {
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .tabs span {
+            color: #4f56be;
+            font-size: 18px;
+            border-bottom: 2px solid transparent;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .tabs .active {
+            border-bottom: 2px solid #4f56be;
+        }
+        .tabs .charging-pile {
+            margin-left: 20px;
+        }
+        .no-products {
+            margin-top: 50px;
+            color: #909090;
+            font-size: 18px;
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: #909090;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()">&#8592;</div>
+        <div class="title">Order</div>
+        <div></div>
+    </div>
+
+    <div class="order-list">Order list</div>
+
+    <div class="tabs">
+        <span class="newest active" onclick="showContent('newest')">Newest</span>
+        <span class="charging-pile" onclick="showContent('charging-pile')">Charging Pile</span>
+    </div>
+
+    <div class="content newest-content active">
+        <div class="no-products">
+            <div class="icon">&#128196;</div>
+            <div>You have no investment products in the newest section</div>
+        </div>
+    </div>
+
+    <div class="content charging-pile-content">
+        <div class="no-products">
+            <div class="icon">&#128196;</div>
+            <div>You have no investment products in the charging pile section</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+
+        // JavaScript function to toggle between newest and charging pile content
+        function showContent(tab) {
+            // Remove active class from both tabs
+            document.querySelector('.tabs .newest').classList.remove('active');
+            document.querySelector('.tabs .charging-pile').classList.remove('active');
+
+            // Add active class to clicked tab
+            document.querySelector(`.tabs .${tab}`).classList.add('active');
+
+            // Hide both content sections
+            document.querySelector('.newest-content').classList.remove('active');
+            document.querySelector('.charging-pile-content').classList.remove('active');
+
+            // Show the selected content section
+            document.querySelector(`.${tab}-content`).classList.add('active');
+        }
+    </script>
+
+</body>
+</html>

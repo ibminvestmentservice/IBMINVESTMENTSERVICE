@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard & Investment Interface</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            font-size: 24px;
+            color: #4B3E8A;
+            margin: 0;
+        }
+        .header .profile-button {
+            padding: 10px 20px;
+            background-color: #4B3E8A;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        .balance-card {
+            background-color: #e2d3f4;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .balance-card h2 {
+            font-size: 24px;
+            color: #ffffff;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .balance-card p {
+            font-size: 18px;
+            color: #ffffff;
+            margin: 5px 0;
+        }
+        .nav-bar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #e2d3f4;
+            padding: 15px 0;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .nav-item {
+            text-align: center;
+            color: #4B3E8A;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        .nav-item img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+        }
+        .product-heading {
+            text-align: center;
+            font-size: 24px;
+            color: #4B3E8A;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+        .product-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around; /* Added for equal spacing */
+            gap: 20px; /* Added for uniform spacing */
+        }
+        .product-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1 1 calc(33.333% - 40px); /* Set each product to take equal space */
+            box-sizing: border-box;
+            max-width: 300px; /* Control maximum width for consistency */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 2px solid #4B3E8A; /* Border for consistency */
+        }
+        .product-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .product-info {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .product-info h2 {
+            margin: 0 0 10px 0;
+            color: #5b4fc9;
+        }
+        .product-info p {
+            margin: 4px 0;
+            color: #333;
+        }
+        .product-invest {
+            text-align: center;
+        }
+        .product-invest .submit-btn {
+            background-color: #5b4fc9;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .nav-bar a.active {
+            color: #5b4fc9;
+            border-bottom: 3px solid #5b4fc9;
+        }
+        /* Footer Buttons */
+        .footer-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+        .footer-button {
+            background-color: #ff6f61;
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .footer-button:hover {
+            background-color: #ff5042;
+        }
+        .telegram-button {
+            background-color: #0088cc;
+        }
+        .telegram-button:hover {
+            background-color: #0077aa;
+        }
+    /* Sign Out Button */
+        .signout-btn {
+            background-color: #1e1f29;
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+        }
+        .signout-btn:hover {
+            background-color: #333;
+        }
+    </style>
+    
+</head>
+<body>
+
+   <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Good day</h1>
+            <a href="companyprofile.html" class="profile-button">Company Profile</a>
+        </div>
+
+        <!-- Balance Card -->
+        <div class="balance-card">
+            <h2>Your Balance</h2>
+            <p>₹ 0.00</p>
+            <p>₹ 0.00</p>
+            <p>Withdraw Balance</p>
+        </div>
+       
+
+        <!-- Navigation Bar -->
+        <div class="nav-bar">
+            <a href="deposit.html" class="nav-item">
+                <img src="https://img.icons8.com/material-outlined/24/000000/deposit.png" alt="Deposit Icon">
+                <div>Deposit</div>
+            </a>
+            <a href="withdraw.html" class="nav-item">
+                <img src="https://img.icons8.com/material-outlined/24/000000/withdrawal.png" alt="Withdraw Icon">
+                <div>Withdraw</div>
+            </a>
+            <a href="order.html" class="nav-item">
+                <img src="https://img.icons8.com/material-outlined/24/000000/order-history.png" alt="Order Icon">
+                <div>Order</div>
+            </a>
+        </div>
+       <div class="nav-bar">
+       <a href="depositrecord.html" class="nav-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKoT08cnM5wF5fnVr_bcQHJ9JV_EF8ufX1GA&usqp=CAU" alt="Deposit Record Icon">
+                <div>Deposit<br>Record</div>
+            </a>
+           <a href="withdrawrecord.html" class="nav-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKoT08cnM5wF5fnVr_bcQHJ9JV_EF8ufX1GA&usqp=CAU" alt="Withdraw Record Icon">
+                <div>Withdraw<br>Record</div>
+            </a>
+           <a href="invitationbonusrecord.html" class="nav-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR35a4zjeWWvey5SY-OZaghAEY6bU2AlMxJFQ&usqp=CAU" alt="Invitation Bonus Icon">
+                <div>Invitation<br>Bonus</div>
+            </a>
+        </div>
+       
+       <script>
+    let userBalance = 0; // Assuming the user's balance is initially 0
+
+    // Function to check balance and show alert if insufficient
+    function checkBalance(investAmount) {
+        if (userBalance < investAmount) {
+            alert("Insufficient Balance, Please Deposit more funds");
+        } else {
+            // If the balance is sufficient, you can proceed with the transaction
+            alert("Investment successful! You have invested ₹" + investAmount);
+            userBalance -= investAmount; // Deduct investment amount from user balance
+        }
+    }
+
+    function signOut() {
+        // Redirect to the login and register page when the sign-out button is clicked
+        window.location.href = 'index.html';
+    }
+</script>
+
+        <!-- Product Heading -->
+        <h2 class="product-heading">Product</h2><hr>
+       <h2 class="product-heading"> Charging Pile</h2>
+
+        <!-- Charging Pile Products Section -->
+        <div class="product-list">
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 1</h2>
+                    <p>Daily income: ₹250.00</p>
+                    <p>Income days: 42 days</p>
+                    <p>Total income: ₹10500.00</p>
+                    <p>Invest amount: ₹600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn" onclick="checkBalance(600)">Submit</button>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 2</h2>
+                    <p>Daily income: ₹865.00</p>
+                    <p>Income days: 36 days</p>
+                    <p>Total income: ₹34308.00</p>
+                    <p>Invest amount: ₹2260.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn" onclick="checkBalance(2260)">Submit</button>
+                </div>
+            </div>
+
+            <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 3</h2>
+                    <p>Daily income: ₹2863.00</p>
+                    <p>Income days: 22 days</p>
+                    <p>Total income: ₹62986.00</p>
+                    <p>Invest amount: ₹4520.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn" onclick="checkBalance(4520)" >Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 4</h2>
+                    <p>Daily income: ₹4186.00</p>
+                    <p>Income days: 18 days</p>
+                    <p>Total income: ₹75348.00</p>
+                    <p>Invest amount: ₹7320.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(7320)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 5</h2>
+                    <p>Daily income: ₹8420.00</p>
+                    <p>Income days: 12 days</p>
+                    <p>Total income: ₹101040.00</p>
+                    <p>Invest amount: ₹11600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn" onclick="checkBalance(11600)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                <div class="product-info">
+                    <h2>Charging Pile 6</h2>
+                    <p>Daily income: ₹11624.00</p>
+                    <p>Income days: 12 days</p>
+                    <p>Total income: ₹139488.00</p>
+                    <p>Invest amount: ₹15200.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(15200)">Submit</button>
+                </div>
+            </div>
+            
+             <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                 <div class="product-info">
+                    <h2>Charging Pile 7</h2>
+                    <p>Daily income: ₹15764.00</p>
+                    <p>Income days: 10 days</p>
+                    <p>Total income: ₹157640.00</p>
+                    <p>Invest amount: ₹22500.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(15200)">Submit</button>
+                </div>
+            </div>
+            
+             <div class="product-item">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8fNC6So1uIPuPDBHOlaoyWY94gPhEdseKHQ&usqp=CAU" alt="Charging Pile">
+                 <div class="product-info">
+                    <h2>Charging Pile 8</h2>
+                    <p>Daily income: ₹20684.00</p>
+                    <p>Income days: 8 days</p>
+                    <p>Total income: ₹165472.00</p>
+                    <p>Invest amount: ₹29200.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(15200)">Submit</button>
+                </div>
+            </div>
+
+            
+        <!-- Newest Section -->
+        <h2 class="product-heading">Newest<hr></h2>
+
+        <div class="product-list">
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 1">
+                <div class="product-info">
+                    <h2>Newest Product 1</h2>
+                    <p>Daily income: ₹600.00</p>
+                    <p>Income days: 5 days</p>
+                    <p>Total income: ₹3000.00</p>
+                    <p>Invest amount: ₹1200.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(1200)">Submit</button>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 2">
+                <div class="product-info">
+                    <h2>Newest Product 2</h2>
+                    <p>Daily income: ₹2200.00</p>
+                    <p>Income days: 4 days</p>
+                    <p>Total income: ₹8800.00</p>
+                    <p>Invest amount: ₹3600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(3600)">Submit</button>
+                </div>
+            </div>
+
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 3</h2>
+                    <p>Daily income: ₹3800.00</p>
+                    <p>Income days: 3 days</p>
+                    <p>Total income: ₹11400.00</p>
+                    <p>Invest amount: ₹5800.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(5800)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 4</h2>
+                    <p>Daily income: ₹8900.00</p>
+                    <p>Income days: 2 days</p>
+                    <p>Total income: ₹17800.00</p>
+                    <p>Invest amount: ₹9600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(9600)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 5</h2>
+                    <p>Daily income: ₹12800.00</p>
+                    <p>Income days: 2 days</p>
+                    <p>Total income: ₹25600.00</p>
+                    <p>Invest amount: ₹15600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(15600)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 6</h2>
+                    <p>Daily income: ₹21800.00</p>
+                    <p>Income days: 2 days</p>
+                    <p>Total income: ₹43600.00</p>
+                    <p>Invest amount: ₹24600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(24600)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 6</h2>
+                    <p>Daily income: ₹26900.00</p>
+                    <p>Income days: 2 days</p>
+                    <p>Total income: ₹53800.00</p>
+                    <p>Invest amount: ₹29600.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(24600)">Submit</button>
+                </div>
+            </div>
+            
+            <div class="product-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxYZqyx0Ee9eU3bHg96E4G-2uJA_lDMuwZOA&usqp=CAU" alt="Newest Item 3">
+                <div class="product-info">
+                    <h2>Newest Product 6</h2>
+                    <p>Daily income: ₹31200.00</p>
+                    <p>Income days: 2 days</p>
+                    <p>Total income: ₹62400.00</p>
+                    <p>Invest amount: ₹36800.00</p>
+                </div>
+                <div class="product-invest">
+                    <button class="submit-btn"onclick="checkBalance(24600)">Submit</button>
+                </div>
+            </div>
+         
+        <!-- Footer Buttons -->
+        <div class="footer-buttons">
+            <a href="https://t.me/IBMofficialhelpline" class="footer-button">Contact Support</a>
+            <a href="https://t.me/ibmofficials" class="footer-button telegram-button">Join Telegram</a>
+        </div>
+   </div>
+            
+ <!-- Sign Out Button -->
+        <div style="text-align: center; margin-top: 50px;">
+            <button class="signout-btn" onclick="signOut()">Sign out</button>
+        </div>
+    </div>
+   
+</body>
+</htm

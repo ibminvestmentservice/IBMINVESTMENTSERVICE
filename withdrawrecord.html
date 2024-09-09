@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdraw Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #f0f0f5;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .back-button {
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .title {
+            font-size: 20px;
+        }
+        .order-list {
+            margin-top: 30px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .no-products {
+            margin-top: 50px;
+            color: #909090;
+            font-size: 18px;
+        }
+        .icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: #909090;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="back-button" onclick="goBack()">&#8592;</div>
+        <div class="title">Withdraw Record</div>
+        <div></div>
+    </div>
+
+    <div class="order-list">Withdraw</div>
+
+    <div class="no-withdraw">
+        <div class="icon">&#128196;</div>
+        <div>You have no withdraw. After you make a withdraw order, the details will show.</div>
+    </div>
+
+    <script>
+        // JavaScript function to go back to the previous page
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
